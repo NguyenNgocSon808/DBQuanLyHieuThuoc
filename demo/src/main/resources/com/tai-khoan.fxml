@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="765" prefWidth="1145" style="-fx-background-color: #f8fafd;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1">
+<VBox prefHeight="765" prefWidth="1145" style="-fx-background-color: #cfedef;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox alignment="CENTER_LEFT" spacing="24" style="-fx-padding: 10 0 10 0;">
             <children>
@@ -82,7 +82,7 @@
                     </Button>
                     <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="EXPORT" />
                 </VBox>
-                <Region prefWidth="40" />
+                <Region prefHeight="72.0" prefWidth="222.0" />
                 <ComboBox fx:id="filterVaiTro" prefWidth="100" promptText="Tất cả" />
                 <TextField fx:id="searchField" prefWidth="220" promptText="Tìm kiếm..." />
                 <Button fx:id="refreshButton" style="-fx-background-color: #fff;">
