@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="800.0" prefWidth="1365.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1">
+<BorderPane prefHeight="800.0" prefWidth="1365.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.HomePageController">
     <left>
         <VBox alignment="TOP_CENTER" prefWidth="220" spacing="4" style="-fx-background-color: #f8fafd; -fx-padding: 18 0 18 0;">
             <children>
@@ -19,7 +19,7 @@
                         <Label style="-fx-font-size: 13px; -fx-text-fill: #888;" text="Admin" />
                     </children>
                 </VBox>
-                <Button fx:id="btnHoaDon" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;">
+                <Button fx:id="btnHoaDon" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;" onAction="#handleHoaDonAction">
                     <graphic>
                         <ImageView fitHeight="22" fitWidth="22">
                             <image>
@@ -29,17 +29,17 @@
                     </graphic>
                     <text>Hóa đơn</text>
                 </Button>
-                <Button fx:id="btnKhachHang" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;">
+                <Button fx:id="btnKhachHang" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;" onAction="#handleKhachHangAction">
                     <graphic>
                         <ImageView fitHeight="22" fitWidth="22">
-                     <image>
-                        <Image url="@assets/home/KhachHang.png" />
-                     </image>
+                            <image>
+                                <Image url="@assets/home/KhachHang.png" />
+                            </image>
                         </ImageView>
                     </graphic>
                     <text>Khách hàng</text>
                 </Button>
-                <Button fx:id="btnThuoc" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;">
+                <Button fx:id="btnThuoc" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;" onAction="#handleThuocAction">
                     <graphic>
                         <ImageView fitHeight="22" fitWidth="22">
                             <image>
@@ -49,7 +49,7 @@
                     </graphic>
                     <text>Thuốc</text>
                 </Button>
-                <Button fx:id="btnPhieuNhap" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;">
+                <Button fx:id="btnPhieuNhap" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;" onAction="#handlePhieuNhapAction">
                     <graphic>
                         <ImageView fitHeight="22" fitWidth="22">
                             <image>
@@ -59,17 +59,17 @@
                     </graphic>
                     <text>Phiếu nhập</text>
                 </Button>
-                <Button fx:id="btnNhaCungCap" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;">
+                <Button fx:id="btnNhaCungCap" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;" onAction="#handleNhaCungCapAction">
                     <graphic>
                         <ImageView fitHeight="22" fitWidth="22">
                             <image>
-                                <Image url="@/com/assets/home/PhieuNhap.png" />
+                                <Image url="@assets/home/NhaCungCap.png" />
                             </image>
                         </ImageView>
                     </graphic>
                     <text>Nhà cung cấp</text>
                 </Button>
-                <Button fx:id="btnNhanVien" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;">
+                <Button fx:id="btnNhanVien" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;" onAction="#handleNhanVienAction">
                     <graphic>
                         <ImageView fitHeight="22" fitWidth="22">
                             <image>
@@ -79,7 +79,7 @@
                     </graphic>
                     <text>Nhân viên</text>
                 </Button>
-                <Button fx:id="btnTaiKhoan" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;">
+                <Button fx:id="btnTaiKhoan" maxWidth="200" minWidth="200" style="-fx-background-color: white; -fx-text-fill: #222; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8;" onAction="#handleTaiKhoanAction">
                     <graphic>
                         <ImageView fitHeight="22" fitWidth="22">
                             <image>
@@ -89,7 +89,7 @@
                     </graphic>
                     <text>Tài khoản</text>
                 </Button>
-                <Button fx:id="btnDangXuat" maxWidth="200" minWidth="200" style="-fx-background-color: #fff; -fx-text-fill: #00bfae; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8; -fx-font-weight: bold;">
+                <Button fx:id="btnDangXuat" maxWidth="200" minWidth="200" style="-fx-background-color: #fff; -fx-text-fill: #00bfae; -fx-font-size: 15px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 0 8 18; -fx-background-radius: 8; -fx-font-weight: bold;" onAction="#handleDangXuatAction">
                     <graphic>
                         <ImageView fitHeight="22" fitWidth="22">
                             <image>
@@ -98,9 +98,9 @@
                         </ImageView>
                     </graphic>
                     <text>Đăng Xuất</text>
-               <VBox.margin>
-                  <Insets top="200.0" />
-               </VBox.margin>
+                    <VBox.margin>
+                        <Insets top="200.0" />
+                    </VBox.margin>
                 </Button>
             </children>
         </VBox>
