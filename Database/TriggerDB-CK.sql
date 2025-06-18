@@ -118,6 +118,4 @@ AFTER INSERT ON taikhoan
 FOR EACH ROW
 EXECUTE FUNCTION insert_nhanvien_when_create_account();
 
-DROP TRIGGER IF EXISTS trg_insert_nhanvien_when_create_account ON taikhoan;
-
 

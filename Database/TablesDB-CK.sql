@@ -12,8 +12,7 @@ CREATE TABLE khachhang (
     id VARCHAR(10) PRIMARY KEY,
     hoten VARCHAR(255) NOT NULL,
     sdt VARCHAR(20) NOT NULL,
-    gioitinh VARCHAR(10) NOT NULL,
-    idtk VARCHAR(10) NOT NULL REFERENCES taikhoan(idtk)
+    gioitinh VARCHAR(10) NOT NULL
 );
 
 -- Bảng Nhân Viên
