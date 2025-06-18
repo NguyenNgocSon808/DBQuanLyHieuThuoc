@@ -9,18 +9,16 @@ public class HoaDon {
     private Date thoiGianNhan;
     private String idnv;
     private String idkh;
-    private String idthuoc;
 
     public HoaDon() {}
 
-    public HoaDon(String idhd, double tongTien, Date thoiGianTao, Date thoiGianNhan, String idnv, String idkh, String idthuoc) {
+    public HoaDon(String idhd, double tongTien, Date thoiGianTao, Date thoiGianNhan, String idnv, String idkh) {
         this.idhd = idhd;
         this.tongTien = tongTien;
         this.thoiGianTao = thoiGianTao;
         this.thoiGianNhan = thoiGianNhan;
         this.idnv = idnv;
         this.idkh = idkh;
-        this.idthuoc = idthuoc;
     }
 
     public String getIdhd() { return idhd; }
@@ -35,6 +33,4 @@ public class HoaDon {
     public void setIdnv(String idnv) { this.idnv = idnv; }
     public String getIdkh() { return idkh; }
     public void setIdkh(String idkh) { this.idkh = idkh; }
-    public String getIdthuoc() { return idthuoc; }
-    public void setIdthuoc(String idthuoc) { this.idthuoc = idthuoc; }
 }

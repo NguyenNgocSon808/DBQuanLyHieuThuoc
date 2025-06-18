@@ -5,14 +5,16 @@ public class KhachHang {
     private String hoTen;
     private String sdt;
     private String gioiTinh;
+    private String idtk;
 
     public KhachHang() {}
 
-    public KhachHang(String id, String hoTen, String sdt, String gioiTinh) {
+    public KhachHang(String id, String hoTen, String sdt, String gioiTinh, String idtk) {
         this.id = id;
         this.hoTen = hoTen;
         this.sdt = sdt;
         this.gioiTinh = gioiTinh;
+        this.idtk = idtk;
     }
 
     public String getId() { return id; }
@@ -23,4 +25,6 @@ public class KhachHang {
     public void setSdt(String sdt) { this.sdt = sdt; }
     public String getGioiTinh() { return gioiTinh; }
     public void setGioiTinh(String gioiTinh) { this.gioiTinh = gioiTinh; }
+    public String getIdtk() { return idtk; }
+    public void setIdtk(String idtk) { this.idtk = idtk; }
 }

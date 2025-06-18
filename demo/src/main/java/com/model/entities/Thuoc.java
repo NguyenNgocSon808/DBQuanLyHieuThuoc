@@ -6,20 +6,20 @@ public class Thuoc {
     private String thanhPhan;
     private String donViTinh;
     private String danhMuc;
-    private String tenNhaCungCap;
+    private String xuatXu;
     private double giaNhap;
     private double giaBan;
     private int soLuongTon;
 
     public Thuoc() {}
 
-    public Thuoc(String idThuoc, String ten, String thanhPhan, String donViTinh, String danhMuc, String tenNhaCungCap, double giaNhap, double giaBan, int soLuongTon) {
+    public Thuoc(String idThuoc, String ten, String thanhPhan, String donViTinh, String danhMuc, String xuatXu, double giaNhap, double giaBan, int soLuongTon) {
         this.idThuoc = idThuoc;
         this.ten = ten;
         this.thanhPhan = thanhPhan;
         this.donViTinh = donViTinh;
         this.danhMuc = danhMuc;
-        this.tenNhaCungCap = tenNhaCungCap;
+        this.xuatXu = xuatXu;
         this.giaNhap = giaNhap;
         this.giaBan = giaBan;
         this.soLuongTon = soLuongTon;
@@ -35,8 +35,8 @@ public class Thuoc {
     public void setDonViTinh(String donViTinh) { this.donViTinh = donViTinh; }
     public String getDanhMuc() { return danhMuc; }
     public void setDanhMuc(String danhMuc) { this.danhMuc = danhMuc; }
-    public String getTenNhaCungCap() { return tenNhaCungCap; }
-    public void setTenNhaCungCap(String tenNhaCungCap) { this.tenNhaCungCap = tenNhaCungCap; }
+    public String getXuatXu() { return xuatXu; }
+    public void setXuatXu(String xuatXu) { this.xuatXu = xuatXu; }
     public double getGiaNhap() { return giaNhap; }
     public void setGiaNhap(double giaNhap) { this.giaNhap = giaNhap; }
     public double getGiaBan() { return giaBan; }

@@ -7,18 +7,16 @@ public class PhieuNhapHang {
     private Date thoiGian;
     private String idnv;
     private String idncc;
-    private String idthuoc;
     private String tenNhapHang;
     private double tongTien;
 
     public PhieuNhapHang() {}
 
-    public PhieuNhapHang(String idPhieu, Date thoiGian, String idnv, String idncc, String idthuoc, String tenNhapHang, double tongTien) {
+    public PhieuNhapHang(String idPhieu, Date thoiGian, String idnv, String idncc, String tenNhapHang, double tongTien) {
         this.idPhieu = idPhieu;
         this.thoiGian = thoiGian;
         this.idnv = idnv;
         this.idncc = idncc;
-        this.idthuoc = idthuoc;
         this.tenNhapHang = tenNhapHang;
         this.tongTien = tongTien;
     }
@@ -31,8 +29,6 @@ public class PhieuNhapHang {
     public void setIdnv(String idnv) { this.idnv = idnv; }
     public String getIdncc() { return idncc; }
     public void setIdncc(String idncc) { this.idncc = idncc; }
-    public String getIdthuoc() { return idthuoc; }
-    public void setIdthuoc(String idthuoc) { this.idthuoc = idthuoc; }
     public String getTenNhapHang() { return tenNhapHang; }
     public void setTenNhapHang(String tenNhapHang) { this.tenNhapHang = tenNhapHang; }
     public double getTongTien() { return tongTien; }
