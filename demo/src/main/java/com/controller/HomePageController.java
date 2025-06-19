@@ -5,6 +5,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.Modality;
 import java.io.IOException;
 
 public class HomePageController {
@@ -158,15 +159,15 @@ public class HomePageController {
     }
 
     // Tài khoản actions
-    private void handleThemTaiKhoan() { showAlert("Thêm tài khoản"); }
-    private void handleSuaTaiKhoan() { showAlert("Sửa tài khoản"); }
+    private void handleThemTaiKhoan() { showPopup("/com/add-tai-khoan.fxml", "Thêm tài khoản"); }
+    private void handleSuaTaiKhoan() { showPopup("/com/update-tai-khoan.fxml", "Cập nhật tài khoản"); }
     private void handleXoaTaiKhoan() { showAlert("Xóa tài khoản"); }
     private void handleInfoTaiKhoan() { showAlert("Thông tin tài khoản"); }
     private void handleRefreshTaiKhoan() { showAlert("Làm mới danh sách tài khoản"); }
 
     // Nhân viên actions
-    private void handleThemNhanVien() { showAlert("Thêm nhân viên"); }
-    private void handleSuaNhanVien() { showAlert("Sửa nhân viên"); }
+    private void handleThemNhanVien() { showPopup("/com/add-nhan-vien.fxml", "Thêm nhân viên"); }
+    private void handleSuaNhanVien() { showPopup("/com/update-nhan-vien.fxml", "Cập nhật nhân viên"); }
     private void handleXoaNhanVien() { showAlert("Xóa nhân viên"); }
     private void handleInfoNhanVien() { showAlert("Thông tin nhân viên"); }
     private void handleRefreshNhanVien() { showAlert("Làm mới danh sách nhân viên"); }
@@ -179,21 +180,35 @@ public class HomePageController {
         showAlert("In phiếu nhập (chức năng in chưa được triển khai).");
     }
 
+    private void showPopup(String fxmlPath, String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle(title);
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // Thuốc handlers
-    private void handleThemThuoc() { showAlert("Thêm thuốc"); }
-    private void handleSuaThuoc() { showAlert("Sửa thuốc"); }
+    private void handleThemThuoc() { showPopup("/com/add-thuoc.fxml", "Thêm thuốc"); }
+    private void handleSuaThuoc() { showPopup("/com/update-thuoc.fxml", "Cập nhật thuốc"); }
     private void handleXoaThuoc() { showAlert("Xóa thuốc"); }
     private void handleInfoThuoc() { showAlert("Thông tin thuốc"); }
     private void handleRefreshThuoc() { showAlert("Làm mới danh sách thuốc"); }
     // Khách hàng handlers
-    private void handleThemKhachHang() { showAlert("Thêm khách hàng"); }
-    private void handleSuaKhachHang() { showAlert("Sửa khách hàng"); }
+    private void handleThemKhachHang() { showPopup("/com/add-khach-hang.fxml", "Thêm khách hàng"); }
+    private void handleSuaKhachHang() { showPopup("/com/update-khach-hang.fxml", "Cập nhật khách hàng"); }
     private void handleXoaKhachHang() { showAlert("Xóa khách hàng"); }
     private void handleInfoKhachHang() { showAlert("Thông tin khách hàng"); }
     private void handleRefreshKhachHang() { showAlert("Làm mới danh sách khách hàng"); }
     // Nhà cung cấp handlers
-    private void handleThemNhaCungCap() { showAlert("Thêm nhà cung cấp"); }
-    private void handleSuaNhaCungCap() { showAlert("Sửa nhà cung cấp"); }
+    private void handleThemNhaCungCap() { showPopup("/com/add-nha-cung-cap.fxml", "Thêm nhà cung cấp"); }
+    private void handleSuaNhaCungCap() { showPopup("/com/update-nha-cung-cap.fxml", "Cập nhật nhà cung cấp"); }
     private void handleXoaNhaCungCap() { showAlert("Xóa nhà cung cấp"); }
     private void handleInfoNhaCungCap() { showAlert("Thông tin nhà cung cấp"); }
     private void handleRefreshNhaCungCap() { showAlert("Làm mới danh sách nhà cung cấp"); }
