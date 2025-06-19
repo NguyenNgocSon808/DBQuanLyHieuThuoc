@@ -9,14 +9,14 @@ import java.util.List;
 public class KhachHangDAO implements InterfaceDAO<KhachHang, String> {
     @Override
     public void create(KhachHang kh) {
-        String sql = "INSERT INTO khachhang (id, hoten, sdt, gioitinh, idtk) VALUES (?, ?, ?, ?, ?)";
-        DatabaseConnection.update(sql, kh.getId(), kh.getHoTen(), kh.getSdt(), kh.getGioiTinh(), kh.getIdtk());
+        String sql = "INSERT INTO khachhang (id, hoten, sdt, gioitinh) VALUES (?, ?, ?, ?)";
+        DatabaseConnection.update(sql, kh.getId(), kh.getHoTen(), kh.getSdt(), kh.getGioiTinh());
     }
 
     @Override
     public void update(KhachHang kh) {
-        String sql = "UPDATE khachhang SET hoten=?, sdt=?, gioitinh=?, idtk=? WHERE id=?";
-        DatabaseConnection.update(sql, kh.getHoTen(), kh.getSdt(), kh.getGioiTinh(), kh.getIdtk(), kh.getId());
+        String sql = "UPDATE khachhang SET hoten=?, sdt=?, gioitinh=? WHERE id=?";
+        DatabaseConnection.update(sql, kh.getHoTen(), kh.getSdt(), kh.getGioiTinh(), kh.getId());
     }
 
     @Override
@@ -35,8 +35,7 @@ public class KhachHangDAO implements InterfaceDAO<KhachHang, String> {
                     rs.getString("id"),
                     rs.getString("hoten"),
                     rs.getString("sdt"),
-                    rs.getString("gioitinh"),
-                    rs.getString("idtk")
+                    rs.getString("gioitinh")
                 ));
             }
             rs.getStatement().getConnection().close();

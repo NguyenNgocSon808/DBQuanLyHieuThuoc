@@ -75,14 +75,13 @@
                   </HBox>
                   <TableView fx:id="thuocTable" prefHeight="478.0" prefWidth="546.0">
                       <columns>
-                          <TableColumn prefWidth="40.0" text="STT" />
-                          <TableColumn text="Mã thuốc" />
-                          <TableColumn text="Tên thuốc" />
-                          <TableColumn text="Danh mục" />
-                          <TableColumn text="Xuất xứ" />
-                          <TableColumn text="Đơn vị" />
-                          <TableColumn text="Số lượng" />
-                          <TableColumn prefWidth="82.4000122070313" text="Đơn giá" />
+                          <TableColumn fx:id="colMaThuocHD" text="Mã thuốc" />
+                          <TableColumn fx:id="colTenThuocHD" prefWidth="114.4000015258789" text="Tên thuốc" />
+                          <TableColumn fx:id="colDanhMucHD" prefWidth="94.39999389648438" text="Danh mục" />
+                          <TableColumn fx:id="colXuatXuHD" prefWidth="112.0" text="Xuất xứ" />
+                          <TableColumn fx:id="colDonViTinhHD" prefWidth="60.0" text="Đơn vị" />
+                          <TableColumn fx:id="colSoLuongHD" prefWidth="55.999969482421875" text="Số lượng" />
+                          <TableColumn fx:id="colDonGiaHD" prefWidth="86.4000244140625" text="Đơn giá" />
                       </columns>
                   </TableView>
               </children>

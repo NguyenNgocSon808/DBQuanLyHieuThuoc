@@ -1,8 +1,21 @@
 package com.controller;
 
+import com.model.dao.ThuocDAO;
+import com.model.dao.KhachHangDAO;
+import com.model.dao.NhaCungCapDAO;
+import com.model.dao.NhanVienDAO;
+import com.model.dao.TaiKhoanDAO;
+import com.model.entities.Thuoc;
+import com.model.entities.KhachHang;
+import com.model.entities.NhaCungCap;
+import com.model.entities.NhanVien;
+import com.model.entities.TaiKhoan;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
@@ -27,7 +40,7 @@ public class HomePageController {
     @FXML private Button refreshButton;
     @FXML private ComboBox<String> filterVaiTroTaiKhoan;
     @FXML private TextField searchFieldTaiKhoan;
-    @FXML private TableView<?> taiKhoanTable;
+    @FXML private TableView<TaiKhoan> taiKhoanTable;
 
     // Nhân viên view controls
     @FXML private Button btnThemNV;
@@ -37,7 +50,7 @@ public class HomePageController {
     @FXML private Button refreshButtonNV;
     @FXML private ComboBox<String> filterComboNV;
     @FXML private TextField searchFieldNV;
-    @FXML private TableView<?> nhanVienTable;
+    @FXML private TableView<NhanVien> nhanVienTable;
 
     // Phiếu nhập view controls
     @FXML private Button btnHuyPhieuNhap;
@@ -61,7 +74,15 @@ public class HomePageController {
     @FXML private TextField searchFieldThuoc;
     @FXML private TextField hanSuDungField;
     @FXML private Button hanSuDungSearchBtn;
-    @FXML private TableView<?> thuocTable;
+    @FXML private TableView<Thuoc> thuocTable;
+    @FXML private TableColumn<Thuoc, String> colSttThuocHD;
+    @FXML private TableColumn<Thuoc, String> colMaThuocHD;
+    @FXML private TableColumn<Thuoc, String> colTenThuocHD;
+    @FXML private TableColumn<Thuoc, String> colDanhMucHD;
+    @FXML private TableColumn<Thuoc, String> colXuatXuHD;
+    @FXML private TableColumn<Thuoc, String> colDonViTinhHD;
+    @FXML private TableColumn<Thuoc, Integer> colSoLuongHD;
+    @FXML private TableColumn<Thuoc, Double> colDonGiaHD;
 
     // Khách hàng view controls
     @FXML private Button btnThemKhachHang;
@@ -69,7 +90,7 @@ public class HomePageController {
     @FXML private Button btnXoaKhachHang;
     @FXML private Button btnInfoKhachHang;
     @FXML private Button refreshButtonKhachHang;
-    @FXML private TableView<?> khachHangTable;
+    @FXML private TableView<KhachHang> khachHangTable;
     @FXML private ComboBox<String> filterComboKhachHang;
     @FXML private TextField searchFieldKhachHang;
 
@@ -79,9 +100,60 @@ public class HomePageController {
     @FXML private Button btnXoaNhaCungCap;
     @FXML private Button btnInfoNhaCungCap;
     @FXML private Button refreshButtonNhaCungCap;
-    @FXML private TableView<?> nhaCungCapTable;
+    @FXML private TableView<NhaCungCap> nhaCungCapTable;
     @FXML private ComboBox<String> filterComboNhaCungCap;
     @FXML private TextField searchFieldNhaCungCap;
+
+    @FXML
+    private TableColumn<Thuoc, String> colMaThuoc;
+    @FXML
+    private TableColumn<Thuoc, String> colTenThuoc;
+    @FXML
+    private TableColumn<Thuoc, String> colDanhMuc;
+    @FXML
+    private TableColumn<Thuoc, String> colXuatXu;
+    @FXML
+    private TableColumn<Thuoc, String> colDonViTinh;
+    @FXML
+    private TableColumn<Thuoc, Integer> colSoLuong;
+    @FXML
+    private TableColumn<Thuoc, Double> colDonGia;
+
+    // Khách hàng TableColumn declarations
+    @FXML private TableColumn<KhachHang, String> colMaKhachHang;
+    @FXML private TableColumn<KhachHang, String> colTenKhachHang;
+    @FXML private TableColumn<KhachHang, String> colSdtKhachHang;
+    @FXML private TableColumn<KhachHang, String> colGioiTinhKhachHang;
+    @FXML private TableColumn<KhachHang, String> colNamSinhKhachHang;
+    @FXML private TableColumn<KhachHang, String> colDiaChiKhachHang;
+
+    // Nhà cung cấp TableColumn declarations
+    @FXML private TableColumn<NhaCungCap, String> colMaNhaCungCap;
+    @FXML private TableColumn<NhaCungCap, String> colTenNhaCungCap;
+    @FXML private TableColumn<NhaCungCap, String> colSdtNhaCungCap;
+    @FXML private TableColumn<NhaCungCap, String> colDiaChiNhaCungCap;
+
+    // Nhân viên TableColumn declarations
+    @FXML private TableColumn<NhanVien, String> colMaNhanVien;
+    @FXML private TableColumn<NhanVien, String> colTenNhanVien;
+    @FXML private TableColumn<NhanVien, String> colSdtNhanVien;
+    @FXML private TableColumn<NhanVien, String> colGioiTinhNhanVien;
+    @FXML private TableColumn<NhanVien, String> colVaiTroNhanVien;
+    @FXML private TableColumn<NhanVien, Integer> colNamSinhNhanVien;
+    @FXML private TableColumn<NhanVien, java.util.Date> colNgayVaoLamNhanVien;
+
+    // Tài khoản TableColumn declarations
+    @FXML private TableColumn<TaiKhoan, String> colMaTaiKhoan;
+    @FXML private TableColumn<TaiKhoan, String> colUsername;
+    @FXML private TableColumn<TaiKhoan, String> colPassword;
+    @FXML private TableColumn<TaiKhoan, String> colTenNhanVienTK;
+    @FXML private TableColumn<TaiKhoan, String> colVaiTroTK;
+
+    private final ThuocDAO thuocDAO = new ThuocDAO();
+    private final KhachHangDAO khachHangDAO = new KhachHangDAO();
+    private final NhaCungCapDAO nhaCungCapDAO = new NhaCungCapDAO();
+    private final NhanVienDAO nhanVienDAO = new NhanVienDAO();
+    private final TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
 
     @FXML
     private void initialize() {
@@ -118,6 +190,13 @@ public class HomePageController {
         if (btnXoaNhaCungCap != null) btnXoaNhaCungCap.setOnAction(e -> handleXoaNhaCungCap());
         if (btnInfoNhaCungCap != null) btnInfoNhaCungCap.setOnAction(e -> handleInfoNhaCungCap());
         if (refreshButtonNhaCungCap != null) refreshButtonNhaCungCap.setOnAction(e -> handleRefreshNhaCungCap());
+
+        if (thuocTable != null) setupThuocTable();
+        if (khachHangTable != null) setupKhachHangTable();
+        if (nhaCungCapTable != null) setupNhaCungCapTable();
+        if (nhanVienTable != null) setupNhanVienTable();
+        if (taiKhoanTable != null) setupTaiKhoanTable();
+        if (thuocTable != null && colMaThuocHD != null) setupThuocTableHD();
     }
 
     @FXML
@@ -219,5 +298,67 @@ public class HomePageController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void setupThuocTable() {
+        colMaThuoc.setCellValueFactory(new PropertyValueFactory<>("idThuoc"));
+        colTenThuoc.setCellValueFactory(new PropertyValueFactory<>("ten"));
+        colDanhMuc.setCellValueFactory(new PropertyValueFactory<>("danhMuc"));
+        colXuatXu.setCellValueFactory(new PropertyValueFactory<>("xuatXu"));
+        colDonViTinh.setCellValueFactory(new PropertyValueFactory<>("donViTinh"));
+        colSoLuong.setCellValueFactory(new PropertyValueFactory<>("soLuongTon"));
+        colDonGia.setCellValueFactory(new PropertyValueFactory<>("giaBan"));
+        ObservableList<Thuoc> list = FXCollections.observableArrayList(thuocDAO.selectAll());
+        thuocTable.setItems(list);
+    }
+
+    private void setupKhachHangTable() {
+        colMaKhachHang.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colTenKhachHang.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
+        colSdtKhachHang.setCellValueFactory(new PropertyValueFactory<>("sdt"));
+        colGioiTinhKhachHang.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+        // colNamSinhKhachHang and colDiaChiKhachHang if available in entity
+        ObservableList<KhachHang> list = FXCollections.observableArrayList(khachHangDAO.selectAll());
+        khachHangTable.setItems(list);
+    }
+    private void setupNhaCungCapTable() {
+        colMaNhaCungCap.setCellValueFactory(new PropertyValueFactory<>("idncc"));
+        colTenNhaCungCap.setCellValueFactory(new PropertyValueFactory<>("tenNhaCungCap"));
+        colSdtNhaCungCap.setCellValueFactory(new PropertyValueFactory<>("sdt"));
+        colDiaChiNhaCungCap.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+        ObservableList<NhaCungCap> list = FXCollections.observableArrayList(nhaCungCapDAO.selectAll());
+        nhaCungCapTable.setItems(list);
+    }
+    private void setupNhanVienTable() {
+        colMaNhanVien.setCellValueFactory(new PropertyValueFactory<>("idnv"));
+        colTenNhanVien.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
+        colSdtNhanVien.setCellValueFactory(new PropertyValueFactory<>("sdt"));
+        colGioiTinhNhanVien.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+        colVaiTroNhanVien.setCellValueFactory(new PropertyValueFactory<>("vaiTro"));
+        colNamSinhNhanVien.setCellValueFactory(new PropertyValueFactory<>("namSinh"));
+        colNgayVaoLamNhanVien.setCellValueFactory(new PropertyValueFactory<>("ngayVaoLam"));
+        ObservableList<NhanVien> list = FXCollections.observableArrayList(nhanVienDAO.selectAll());
+        nhanVienTable.setItems(list);
+    }
+    private void setupTaiKhoanTable() {
+        colMaTaiKhoan.setCellValueFactory(new PropertyValueFactory<>("idtk"));
+        colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        colPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+        colTenNhanVienTK.setCellValueFactory(new PropertyValueFactory<>("idnv")); // or join for name
+        colVaiTroTK.setCellValueFactory(new PropertyValueFactory<>("vaiTro"));
+        ObservableList<TaiKhoan> list = FXCollections.observableArrayList(taiKhoanDAO.selectAll());
+        taiKhoanTable.setItems(list);
+    }
+    private void setupThuocTableHD() {
+        colSttThuocHD.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(String.valueOf(thuocTable.getItems().indexOf(cellData.getValue()) + 1)));
+        colMaThuocHD.setCellValueFactory(new PropertyValueFactory<>("idThuoc"));
+        colTenThuocHD.setCellValueFactory(new PropertyValueFactory<>("ten"));
+        colDanhMucHD.setCellValueFactory(new PropertyValueFactory<>("danhMuc"));
+        colXuatXuHD.setCellValueFactory(new PropertyValueFactory<>("xuatXu"));
+        colDonViTinhHD.setCellValueFactory(new PropertyValueFactory<>("donViTinh"));
+        colSoLuongHD.setCellValueFactory(new PropertyValueFactory<>("soLuongTon"));
+        colDonGiaHD.setCellValueFactory(new PropertyValueFactory<>("giaBan"));
+        ObservableList<Thuoc> list = FXCollections.observableArrayList(thuocDAO.selectAll());
+        thuocTable.setItems(list);
     }
 }
