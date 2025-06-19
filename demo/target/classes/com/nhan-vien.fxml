@@ -49,17 +49,7 @@
                     </Button>
                     <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="XÓA" />
                 </VBox>
-                <VBox alignment="CENTER" spacing="4">
-                    <Button fx:id="btnInfo" prefHeight="48" prefWidth="48" style="-fx-background-color: #2979ff; -fx-background-radius: 50%; -fx-padding: 0;">
-                        <graphic>
-                            <ImageView fitHeight="50.0" fitWidth="50.0">
-                        <image>
-                           <Image url="@assets/info.png" />
-                        </image></ImageView>
-                        </graphic>
-                    </Button>
-                    <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="INFO" />
-                </VBox>
+                <VBox alignment="CENTER" spacing="4" />
                 <Region prefHeight="72.0" prefWidth="236.0" />
                 <ComboBox fx:id="filterComboNhanVien" prefWidth="100" promptText="Tất cả" />
                 <TextField fx:id="searchFieldNhanVien" prefWidth="220" promptText="Tìm kiếm..." />
