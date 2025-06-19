@@ -21,7 +21,6 @@ public class NhaCungCapController {
     @FXML private TableColumn<NhaCungCap, String> colDiaChiNhaCungCap;
     @FXML private Button btnThemNhaCungCap;
     @FXML private Button btnSuaNhaCungCap;
-    @FXML private Button refreshButtonNhaCungCap;
     @FXML private Button btnXoaNhaCungCap;
 
     private final NhaCungCapDAO nhaCungCapDAO = new NhaCungCapDAO();
@@ -31,7 +30,6 @@ public class NhaCungCapController {
         btnThemNhaCungCap.setOnAction(e -> handleThemNhaCungCap());
         btnSuaNhaCungCap.setOnAction(e -> handleSuaNhaCungCap());
         if (btnXoaNhaCungCap != null) btnXoaNhaCungCap.setOnAction(e -> handleXoaNhaCungCap());
-        refreshButtonNhaCungCap.setOnAction(e -> setupNhaCungCapTable());
         setupNhaCungCapTable();
     }
 

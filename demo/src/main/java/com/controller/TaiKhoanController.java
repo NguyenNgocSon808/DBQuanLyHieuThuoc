@@ -23,7 +23,6 @@ public class TaiKhoanController {
     @FXML private Button btnThem;
     @FXML private Button btnSua;
     @FXML private Button btnXoa;
-    @FXML private Button refreshButton;
 
     private final TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
 
@@ -32,7 +31,6 @@ public class TaiKhoanController {
         btnThem.setOnAction(e -> handleThemTaiKhoan());
         btnSua.setOnAction(e -> handleSuaTaiKhoan());
         if (btnXoa != null) btnXoa.setOnAction(e -> handleXoaTaiKhoan());
-        refreshButton.setOnAction(e -> setupTaiKhoanTable());
         setupTaiKhoanTable();
     }
 

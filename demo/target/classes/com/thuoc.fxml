@@ -2,11 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -17,7 +15,7 @@
 
 <VBox spacing="10" style="-fx-padding: 20 20 10 0; -fx-background-color: #cfedef;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.ThuocController">
       <children>
-           <HBox alignment="CENTER_LEFT" spacing="24" style="-fx-padding: 10 0 10 0;">
+           <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="1135.0" spacing="24" style="-fx-padding: 10 0 10 0;">
                <children>
                    <VBox alignment="CENTER" spacing="4">
                        <Button fx:id="btnThemThuoc" prefHeight="48" prefWidth="48" style="-fx-background-color: #00e676; -fx-background-radius: 50%; -fx-padding: 0;">
@@ -58,17 +56,6 @@
                    <VBox alignment="CENTER" spacing="4" />
                    <VBox alignment="CENTER" spacing="4" />
             <Region prefHeight="0.0" prefWidth="200.0" />
-                   <ComboBox fx:id="filterVaiTroThuoc" prefWidth="100" promptText="Tất cả" />
-                   <TextField fx:id="searchFieldThuoc" prefWidth="220" promptText="Tìm kiếm..." />
-                   <Button fx:id="refreshButtonThuoc" style="-fx-background-color: #fff;">
-                       <graphic>
-                           <ImageView fitHeight="24" fitWidth="24">
-                       <image>
-                           <Image url="@assets/reload.png" />
-                       </image>
-                  </ImageView>
-                       </graphic>
-                   </Button>
                </children>
          <VBox.margin>
             <Insets left="10.0" />
@@ -77,26 +64,6 @@
           <Label maxWidth="Infinity" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #00bfae; -fx-text-fill: white; -fx-padding: 6 0 6 0; -fx-alignment: CENTER;" text="DANH SÁCH THÔNG TIN THUỐC" />
       <HBox prefHeight="765" prefWidth="1145" style="-fx-background-color: #f8fafd;">
          <children>
-              <!-- Filter Panel -->
-              <VBox maxWidth="300" minWidth="150.0" prefHeight="766.0" prefWidth="150.0" spacing="16" style="-fx-padding: 20 10 10 20; -fx-background-color: #cfedef;">
-                  <children>
-                      <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Danh mục thuốc" />
-                      <ComboBox fx:id="danhMucCombo" promptText="Tất cả" />
-                      <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Xuất xứ" />
-                      <ComboBox promptText="Tất cả" fx:id="xuatXuCombo" />
-                      <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Đơn vị tính" />
-                      <ComboBox fx:id="donViTinhCombo" promptText="Tất cả" />
-                      <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Hạn sử dụng còn" />
-                      <HBox spacing="6">
-                          <TextField fx:id="hanSuDungField" promptText="Nhập số ngày..." />
-                          <Button fx:id="hanSuDungSearchBtn" style="-fx-background-color: #fff;">
-                              <graphic>
-                                  <ImageView fitHeight="18" fitWidth="18" />
-                              </graphic>
-                          </Button>
-                      </HBox>
-                  </children>
-              </VBox>
                 <VBox spacing="10">
                     <TableView fx:id="thuocTable" prefHeight="771.0" prefWidth="995.0">
                         <columns>

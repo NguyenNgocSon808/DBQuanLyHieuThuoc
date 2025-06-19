@@ -2,11 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -54,19 +52,6 @@
                 <VBox alignment="CENTER" spacing="4" />
                 <VBox alignment="CENTER" spacing="4" />
                 <Region prefHeight="71.0" prefWidth="362.0" />
-                <ComboBox fx:id="filterComboKhachHang" prefWidth="100" promptText="Tất cả" />
-                <TextField fx:id="searchFieldKhachHang" prefWidth="220" promptText="Tìm kiếm..." />
-                <Button fx:id="refreshButtonKhachHang" style="-fx-background-color: #fff;">
-                    <graphic>
-                        <ImageView fitHeight="24" fitWidth="24">
-                     <image>
-                        <Image url="@assets/reload.png" />
-                     </image></ImageView>
-                    </graphic>
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-                </Button>
             </children>
          <VBox.margin>
             <Insets left="10.0" />

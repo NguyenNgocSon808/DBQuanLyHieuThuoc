@@ -25,7 +25,6 @@ public class ThuocController {
     @FXML private Button btnThemThuoc;
     @FXML private Button btnSuaThuoc;
     @FXML private Button btnXoaThuoc;
-    @FXML private Button refreshButtonThuoc;
 
     private final ThuocDAO thuocDAO = new ThuocDAO();
 
@@ -34,7 +33,6 @@ public class ThuocController {
         btnThemThuoc.setOnAction(e -> handleThemThuoc());
         btnSuaThuoc.setOnAction(e -> handleSuaThuoc());
         if (btnXoaThuoc != null) btnXoaThuoc.setOnAction(e -> handleXoaThuoc());
-        refreshButtonThuoc.setOnAction(e -> setupThuocTable());
         setupThuocTable();
     }
 

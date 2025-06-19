@@ -23,7 +23,6 @@ public class KhachHangController {
     @FXML private Button btnSuaKhachHang;
     @FXML private Button btnXoaKhachHang;
     @FXML private Button btnInfoKhachHang;
-    @FXML private Button refreshButtonKhachHang;
 
     private final KhachHangDAO khachHangDAO = new KhachHangDAO();
 
@@ -32,7 +31,6 @@ public class KhachHangController {
         btnThemKhachHang.setOnAction(e -> handleThemKhachHang());
         btnSuaKhachHang.setOnAction(e -> handleSuaKhachHang());
         if (btnXoaKhachHang != null) btnXoaKhachHang.setOnAction(e -> handleXoaKhachHang());
-        refreshButtonKhachHang.setOnAction(e -> setupKhachHangTable());
         setupKhachHangTable();
     }
 
