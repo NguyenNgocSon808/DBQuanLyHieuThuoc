@@ -32,34 +32,20 @@ public class HomePageController {
     @FXML private Button btnTaiKhoan;
     @FXML private Button btnDangXuat;
 
-    // Tài khoản view controls
-    @FXML private Button btnThem;
-    @FXML private Button btnSua;
-    @FXML private Button btnXoa;
-    @FXML private Button btnInfo;
-    @FXML private Button refreshButton;
-    @FXML private ComboBox<String> filterVaiTroTaiKhoan;
-    @FXML private TextField searchFieldTaiKhoan;
-    @FXML private TableView<TaiKhoan> taiKhoanTable;
-
-    // Nhân viên view controls
-    @FXML private Button btnThemNV;
-    @FXML private Button btnSuaNV;
-    @FXML private Button btnXoaNV;
-    @FXML private Button btnInfoNV;
-    @FXML private Button refreshButtonNV;
-    @FXML private ComboBox<String> filterComboNV;
-    @FXML private TextField searchFieldNV;
-    @FXML private TableView<NhanVien> nhanVienTable;
-
-    // Phiếu nhập view controls
-    @FXML private Button btnHuyPhieuNhap;
-    @FXML private Button btnPrintPhieuNhap;
-    @FXML private TextField txtMaPN;
-    @FXML private TextField txtTenNCC;
-    @FXML private TextField txtTenNV;
-    @FXML private TextField txtTong;
-    @FXML private TableView<?> tableCTPN;
+    // Hóa đơn view controls
+    @FXML private Button addToCartButtonHoaDon;
+    @FXML private Button refreshButtonHoaDon;
+    @FXML private ComboBox<String> filterComboHoaDon;
+    @FXML private TextField searchFieldHoaDon;
+    @FXML private TextField soLuongFieldHoaDon;
+    @FXML private TableView<Thuoc> thuocTableHD;
+    @FXML private TableColumn<Thuoc, String> colMaThuocHD;
+    @FXML private TableColumn<Thuoc, String> colTenThuocHD;
+    @FXML private TableColumn<Thuoc, String> colDanhMucHD;
+    @FXML private TableColumn<Thuoc, String> colXuatXuHD;
+    @FXML private TableColumn<Thuoc, String> colDonViTinhHD;
+    @FXML private TableColumn<Thuoc, Integer> colSoLuongHD;
+    @FXML private TableColumn<Thuoc, Double> colDonGiaHD;
 
     // Thuốc view controls
     @FXML private Button btnThemThuoc;
@@ -92,6 +78,12 @@ public class HomePageController {
     @FXML private TableView<KhachHang> khachHangTable;
     @FXML private ComboBox<String> filterComboKhachHang;
     @FXML private TextField searchFieldKhachHang;
+    @FXML private TableColumn<KhachHang, String> colMaKhachHang;
+    @FXML private TableColumn<KhachHang, String> colTenKhachHang;
+    @FXML private TableColumn<KhachHang, String> colSdtKhachHang;
+    @FXML private TableColumn<KhachHang, String> colGioiTinhKhachHang;
+    @FXML private TableColumn<KhachHang, String> colNamSinhKhachHang;
+    @FXML private TableColumn<KhachHang, String> colDiaChiKhachHang;
 
     // Nhà cung cấp view controls
     @FXML private Button btnThemNhaCungCap;
@@ -102,22 +94,21 @@ public class HomePageController {
     @FXML private TableView<NhaCungCap> nhaCungCapTable;
     @FXML private ComboBox<String> filterComboNhaCungCap;
     @FXML private TextField searchFieldNhaCungCap;
-
-    // Khách hàng TableColumn declarations
-    @FXML private TableColumn<KhachHang, String> colMaKhachHang;
-    @FXML private TableColumn<KhachHang, String> colTenKhachHang;
-    @FXML private TableColumn<KhachHang, String> colSdtKhachHang;
-    @FXML private TableColumn<KhachHang, String> colGioiTinhKhachHang;
-    @FXML private TableColumn<KhachHang, String> colNamSinhKhachHang;
-    @FXML private TableColumn<KhachHang, String> colDiaChiKhachHang;
-
-    // Nhà cung cấp TableColumn declarations
     @FXML private TableColumn<NhaCungCap, String> colMaNhaCungCap;
     @FXML private TableColumn<NhaCungCap, String> colTenNhaCungCap;
     @FXML private TableColumn<NhaCungCap, String> colSdtNhaCungCap;
     @FXML private TableColumn<NhaCungCap, String> colDiaChiNhaCungCap;
 
-    // Nhân viên TableColumn declarations
+
+    // Nhân viên view controls
+    @FXML private Button btnThemNV;
+    @FXML private Button btnSuaNV;
+    @FXML private Button btnXoaNV;
+    @FXML private Button btnInfoNV;
+    @FXML private Button refreshButtonNV;
+    @FXML private ComboBox<String> filterComboNV;
+    @FXML private TextField searchFieldNV;
+    @FXML private TableView<NhanVien> nhanVienTable;
     @FXML private TableColumn<NhanVien, String> colMaNhanVien;
     @FXML private TableColumn<NhanVien, String> colTenNhanVien;
     @FXML private TableColumn<NhanVien, String> colSdtNhanVien;
@@ -126,23 +117,33 @@ public class HomePageController {
     @FXML private TableColumn<NhanVien, Integer> colNamSinhNhanVien;
     @FXML private TableColumn<NhanVien, java.util.Date> colNgayVaoLamNhanVien;
 
-    // Tài khoản TableColumn declarations
+
+    // Tài khoản view controls
+    @FXML private Button btnThem;
+    @FXML private Button btnSua;
+    @FXML private Button btnXoa;
+    @FXML private Button btnInfo;
+    @FXML private Button refreshButton;
+    @FXML private ComboBox<String> filterVaiTroTaiKhoan;
+    @FXML private TextField searchFieldTaiKhoan;
+    @FXML private TableView<TaiKhoan> taiKhoanTable;
     @FXML private TableColumn<TaiKhoan, String> colMaTaiKhoan;
     @FXML private TableColumn<TaiKhoan, String> colUsername;
     @FXML private TableColumn<TaiKhoan, String> colPassword;
     @FXML private TableColumn<TaiKhoan, String> colTenNhanVienTK;
     @FXML private TableColumn<TaiKhoan, String> colVaiTroTK;
 
-    // Table for thuốc in hóa đơn view
-    @FXML private TableView<Thuoc> thuocTableHD;
-    @FXML private TableColumn<Thuoc, String> colMaThuocHD;
-    @FXML private TableColumn<Thuoc, String> colTenThuocHD;
-    @FXML private TableColumn<Thuoc, String> colDanhMucHD;
-    @FXML private TableColumn<Thuoc, String> colXuatXuHD;
-    @FXML private TableColumn<Thuoc, String> colDonViTinhHD;
-    @FXML private TableColumn<Thuoc, Integer> colSoLuongHD;
-    @FXML private TableColumn<Thuoc, Double> colDonGiaHD;
 
+    // Phiếu nhập view controls
+    @FXML private Button btnHuyPhieuNhap;
+    @FXML private Button btnPrintPhieuNhap;
+    @FXML private TextField txtMaPN;
+    @FXML private TextField txtTenNCC;
+    @FXML private TextField txtTenNV;
+    @FXML private TextField txtTong;
+    @FXML private TableView<?> tableCTPN;
+
+    //DAOs
     private final ThuocDAO thuocDAO = new ThuocDAO();
     private final KhachHangDAO khachHangDAO = new KhachHangDAO();
     private final NhaCungCapDAO nhaCungCapDAO = new NhaCungCapDAO();
@@ -190,7 +191,15 @@ public class HomePageController {
         if (nhaCungCapTable != null) setupNhaCungCapTable();
         if (nhanVienTable != null) setupNhanVienTable();
         if (taiKhoanTable != null) setupTaiKhoanTable();
-        if (thuocTableHD != null && colMaThuocHD != null) setupThuocTableHD();
+        if (thuocTableHD != null) {
+            setupThuocTableHD();
+        }
+        if (addToCartButtonHoaDon != null) {
+            addToCartButtonHoaDon.setOnAction(e -> System.out.println("[DEBUG] addToCartButtonHoaDon clicked"));
+        }
+        if (refreshButtonHoaDon != null) {
+            refreshButtonHoaDon.setOnAction(e -> System.out.println("[DEBUG] refreshButtonHoaDon clicked"));
+        }
     }
 
     @FXML

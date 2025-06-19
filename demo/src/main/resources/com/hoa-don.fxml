@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane hgap="10" maxHeight="-Infinity" maxWidth="1455.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765" prefWidth="1145" style="-fx-background-color: #cfedef;" vgap="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="com.controller.HomePageController" hgap="10" maxHeight="-Infinity" maxWidth="1455.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765" prefWidth="1145" style="-fx-background-color: #cfedef;" vgap="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints percentWidth="55.0" />
         <ColumnConstraints percentWidth="45.0" />
@@ -55,15 +55,15 @@
           <VBox spacing="10" style="-fx-background-color: #f8fafd;">
               <children>
                   <HBox spacing="8">
-                      <ComboBox fx:id="filterCombo" prefWidth="100" promptText="Tất cả" />
-                      <TextField fx:id="searchField" prefWidth="180" promptText="Tìm kiếm..." />
-                      <Button fx:id="refreshButton" style="-fx-background-color: #fff;">
+                      <ComboBox fx:id="filterComboHoaDon" prefWidth="100" promptText="Tất cả" />
+                      <TextField fx:id="searchFieldHoaDon" prefWidth="180" promptText="Tìm kiếm..." />
+                      <Button fx:id="refreshButtonHoaDon" style="-fx-background-color: #fff;">
                           <graphic>
                               <ImageView fitHeight="20" fitWidth="20" />
                           </graphic>
                       </Button>
-                      <TextField fx:id="soLuongField" prefWidth="100" promptText="Số lượng..." />
-                      <Button fx:id="addToCartButton" prefWidth="100" style="-fx-background-color: #00bfae; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="THÊM">
+                      <TextField fx:id="soLuongFieldHoaDon" prefWidth="100" promptText="Số lượng..." />
+                      <Button fx:id="addToCartButtonHoaDon" prefWidth="100" style="-fx-background-color: #00bfae; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="THÊM">
                           <graphic>
                               <ImageView fitHeight="20" fitWidth="20">
                            <image>
