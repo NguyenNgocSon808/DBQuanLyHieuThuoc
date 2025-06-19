@@ -54,8 +54,9 @@ public class HomePageController {
     }
 
     private void applyRolePermissions() {
+        // Không hiện thông báo khi chỉ mới đăng nhập
         if (currentUser == null) {
-            showPermissionError();
+            // Không gọi showPermissionError ở đây nữa
             return;
         }
         String role = currentUser.getVaiTro();
@@ -76,20 +77,56 @@ public class HomePageController {
         }
     }
 
+    private boolean hasPermission(String action) {
+        if (currentUser == null) return false;
+        String role = currentUser.getVaiTro().toLowerCase();
+        if (role.equals("admin")) return true;
+        if (role.contains("quản lý") || role.contains("quan ly")) {
+            // Quản lý chỉ không được thao tác tài khoản
+            return !action.equals("taikhoan");
+        }
+        if (role.contains("nhân viên") || role.contains("nhan vien")) {
+            // Nhân viên không được thao tác tài khoản, nhân viên, nhà cung cấp, phiếu nhập
+            return !(action.equals("taikhoan") || action.equals("nhanvien") || action.equals("nhacungcap") || action.equals("phieunhap"));
+        }
+        return false;
+    }
+
     @FXML
-    private void handleHoaDonAction() { loadService("/com/hoa-don.fxml"); }
+    private void handleHoaDonAction() {
+        if (!hasPermission("hoadon")) { showPermissionError(); return; }
+        loadService("/com/hoa-don.fxml");
+    }
     @FXML
-    private void handleKhachHangAction() { loadService("/com/khach-hang.fxml"); }
+    private void handleKhachHangAction() {
+        if (!hasPermission("khachhang")) { showPermissionError(); return; }
+        loadService("/com/khach-hang.fxml");
+    }
     @FXML
-    private void handleThuocAction() { loadService("/com/thuoc.fxml"); }
+    private void handleThuocAction() {
+        if (!hasPermission("thuoc")) { showPermissionError(); return; }
+        loadService("/com/thuoc.fxml");
+    }
     @FXML
-    private void handlePhieuNhapAction() { loadService("/com/phieu-nhap.fxml"); }
+    private void handlePhieuNhapAction() {
+        if (!hasPermission("phieunhap")) { showPermissionError(); return; }
+        loadService("/com/phieu-nhap.fxml");
+    }
     @FXML
-    private void handleNhaCungCapAction() { loadService("/com/nha-cung-cap.fxml"); }
+    private void handleNhaCungCapAction() {
+        if (!hasPermission("nhacungcap")) { showPermissionError(); return; }
+        loadService("/com/nha-cung-cap.fxml");
+    }
     @FXML
-    private void handleNhanVienAction() { loadService("/com/nhan-vien.fxml"); }
+    private void handleNhanVienAction() {
+        if (!hasPermission("nhanvien")) { showPermissionError(); return; }
+        loadService("/com/nhan-vien.fxml");
+    }
     @FXML
-    private void handleTaiKhoanAction() { loadService("/com/tai-khoan.fxml"); }
+    private void handleTaiKhoanAction() {
+        if (!hasPermission("taikhoan")) { showPermissionError(); return; }
+        loadService("/com/tai-khoan.fxml");
+    }
     @FXML
     private void handleDangXuatAction() {
         try {
@@ -112,5 +149,9 @@ public class HomePageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setMainContent(Node node) {
+        servicePane.getChildren().setAll(node);
     }
 }

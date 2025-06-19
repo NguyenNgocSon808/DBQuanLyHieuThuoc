@@ -33,18 +33,25 @@ public class LoginController {
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        boolean authenticated = false;
+        TaiKhoan loggedIn = null;
         for (TaiKhoan tk : taiKhoanDAO.selectAll()) {
             if (tk.getUsername().equals(username) && tk.getPassword().equals(password)) {
-                authenticated = true;
+                loggedIn = tk;
                 break;
             }
         }
-        if (authenticated) {
+        if (loggedIn != null) {
             showAlert(Alert.AlertType.INFORMATION, "Đăng nhập thành công!");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/home-page.fxml"));
                 Parent root = loader.load();
+                // Set current user for HomePageController
+                com.controller.HomePageController.setCurrentUser(loggedIn);
+                // Load Hóa Đơn view vào servicePane
+                HomePageController homeController = loader.getController();
+                FXMLLoader hoaDonLoader = new FXMLLoader(getClass().getResource("/com/hoa-don.fxml"));
+                Node hoaDonView = hoaDonLoader.load();
+                homeController.setMainContent(hoaDonView);
                 Stage stage = new Stage();
                 stage.setTitle("Trang chủ");
                 stage.setScene(new Scene(root));
