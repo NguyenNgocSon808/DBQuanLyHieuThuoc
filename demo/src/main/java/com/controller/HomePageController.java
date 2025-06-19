@@ -75,14 +75,13 @@ public class HomePageController {
     @FXML private TextField hanSuDungField;
     @FXML private Button hanSuDungSearchBtn;
     @FXML private TableView<Thuoc> thuocTable;
-    @FXML private TableColumn<Thuoc, String> colSttThuocHD;
-    @FXML private TableColumn<Thuoc, String> colMaThuocHD;
-    @FXML private TableColumn<Thuoc, String> colTenThuocHD;
-    @FXML private TableColumn<Thuoc, String> colDanhMucHD;
-    @FXML private TableColumn<Thuoc, String> colXuatXuHD;
-    @FXML private TableColumn<Thuoc, String> colDonViTinhHD;
-    @FXML private TableColumn<Thuoc, Integer> colSoLuongHD;
-    @FXML private TableColumn<Thuoc, Double> colDonGiaHD;
+    @FXML private TableColumn<Thuoc, String> colMaThuoc;
+    @FXML private TableColumn<Thuoc, String> colTenThuoc;
+    @FXML private TableColumn<Thuoc, String> colDanhMuc;
+    @FXML private TableColumn<Thuoc, String> colXuatXu;
+    @FXML private TableColumn<Thuoc, String> colDonViTinh;
+    @FXML private TableColumn<Thuoc, Integer> colSoLuong;
+    @FXML private TableColumn<Thuoc, Double> colDonGia;
 
     // Khách hàng view controls
     @FXML private Button btnThemKhachHang;
@@ -103,21 +102,6 @@ public class HomePageController {
     @FXML private TableView<NhaCungCap> nhaCungCapTable;
     @FXML private ComboBox<String> filterComboNhaCungCap;
     @FXML private TextField searchFieldNhaCungCap;
-
-    @FXML
-    private TableColumn<Thuoc, String> colMaThuoc;
-    @FXML
-    private TableColumn<Thuoc, String> colTenThuoc;
-    @FXML
-    private TableColumn<Thuoc, String> colDanhMuc;
-    @FXML
-    private TableColumn<Thuoc, String> colXuatXu;
-    @FXML
-    private TableColumn<Thuoc, String> colDonViTinh;
-    @FXML
-    private TableColumn<Thuoc, Integer> colSoLuong;
-    @FXML
-    private TableColumn<Thuoc, Double> colDonGia;
 
     // Khách hàng TableColumn declarations
     @FXML private TableColumn<KhachHang, String> colMaKhachHang;
@@ -148,6 +132,16 @@ public class HomePageController {
     @FXML private TableColumn<TaiKhoan, String> colPassword;
     @FXML private TableColumn<TaiKhoan, String> colTenNhanVienTK;
     @FXML private TableColumn<TaiKhoan, String> colVaiTroTK;
+
+    // Table for thuốc in hóa đơn view
+    @FXML private TableView<Thuoc> thuocTableHD;
+    @FXML private TableColumn<Thuoc, String> colMaThuocHD;
+    @FXML private TableColumn<Thuoc, String> colTenThuocHD;
+    @FXML private TableColumn<Thuoc, String> colDanhMucHD;
+    @FXML private TableColumn<Thuoc, String> colXuatXuHD;
+    @FXML private TableColumn<Thuoc, String> colDonViTinhHD;
+    @FXML private TableColumn<Thuoc, Integer> colSoLuongHD;
+    @FXML private TableColumn<Thuoc, Double> colDonGiaHD;
 
     private final ThuocDAO thuocDAO = new ThuocDAO();
     private final KhachHangDAO khachHangDAO = new KhachHangDAO();
@@ -196,7 +190,7 @@ public class HomePageController {
         if (nhaCungCapTable != null) setupNhaCungCapTable();
         if (nhanVienTable != null) setupNhanVienTable();
         if (taiKhoanTable != null) setupTaiKhoanTable();
-        if (thuocTable != null && colMaThuocHD != null) setupThuocTableHD();
+        if (thuocTableHD != null && colMaThuocHD != null) setupThuocTableHD();
     }
 
     @FXML
@@ -350,7 +344,6 @@ public class HomePageController {
         taiKhoanTable.setItems(list);
     }
     private void setupThuocTableHD() {
-        colSttThuocHD.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(String.valueOf(thuocTable.getItems().indexOf(cellData.getValue()) + 1)));
         colMaThuocHD.setCellValueFactory(new PropertyValueFactory<>("idThuoc"));
         colTenThuocHD.setCellValueFactory(new PropertyValueFactory<>("ten"));
         colDanhMucHD.setCellValueFactory(new PropertyValueFactory<>("danhMuc"));
@@ -359,6 +352,6 @@ public class HomePageController {
         colSoLuongHD.setCellValueFactory(new PropertyValueFactory<>("soLuongTon"));
         colDonGiaHD.setCellValueFactory(new PropertyValueFactory<>("giaBan"));
         ObservableList<Thuoc> list = FXCollections.observableArrayList(thuocDAO.selectAll());
-        thuocTable.setItems(list);
+        thuocTableHD.setItems(list);
     }
 }
