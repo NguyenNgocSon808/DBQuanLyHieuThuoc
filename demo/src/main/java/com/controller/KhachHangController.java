@@ -31,6 +31,7 @@ public class KhachHangController {
     private void initialize() {
         btnThemKhachHang.setOnAction(e -> handleThemKhachHang());
         btnSuaKhachHang.setOnAction(e -> handleSuaKhachHang());
+        if (btnXoaKhachHang != null) btnXoaKhachHang.setOnAction(e -> handleXoaKhachHang());
         refreshButtonKhachHang.setOnAction(e -> setupKhachHangTable());
         setupKhachHangTable();
     }
@@ -50,20 +51,24 @@ public class KhachHangController {
             TextField sdtField = (TextField) root.lookup("#sdtField");
             TextField gioiTinhField = (TextField) root.lookup("#gioiTinhField");
             btnThem.setOnAction(e -> {
-                KhachHang kh = new KhachHang(
-                    idField.getText(),
-                    hoTenField.getText(),
-                    sdtField.getText(),
-                    gioiTinhField.getText()
-                );
-                khachHangDAO.create(kh);
-                setupKhachHangTable();
-                stage.close();
+                try {
+                    KhachHang kh = new KhachHang(
+                        idField.getText(),
+                        hoTenField.getText(),
+                        sdtField.getText(),
+                        gioiTinhField.getText()
+                    );
+                    khachHangDAO.create(kh);
+                    setupKhachHangTable();
+                    stage.close();
+                } catch (Exception ex) {
+                    showAlert("Lỗi khi thêm khách hàng: " + ex.getMessage());
+                }
             });
             btnHuy.setOnAction(e -> stage.close());
             stage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Lỗi khi mở cửa sổ thêm khách hàng: " + e.getMessage());
         }
     }
     private void handleSuaKhachHang() {
@@ -88,20 +93,44 @@ public class KhachHangController {
             sdtField.setText(selected.getSdt());
             gioiTinhField.setText(selected.getGioiTinh());
             btnCapNhat.setOnAction(e -> {
-                KhachHang kh = new KhachHang(
-                    idField.getText(),
-                    hoTenField.getText(),
-                    sdtField.getText(),
-                    gioiTinhField.getText()
-                );
-                khachHangDAO.update(kh);
-                setupKhachHangTable();
-                stage.close();
+                try {
+                    KhachHang kh = new KhachHang(
+                        idField.getText(),
+                        hoTenField.getText(),
+                        sdtField.getText(),
+                        gioiTinhField.getText()
+                    );
+                    khachHangDAO.update(kh);
+                    setupKhachHangTable();
+                    stage.close();
+                } catch (Exception ex) {
+                    showAlert("Lỗi khi cập nhật khách hàng: " + ex.getMessage());
+                }
             });
             btnHuy.setOnAction(e -> stage.close());
             stage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Lỗi khi mở cửa sổ cập nhật khách hàng: " + e.getMessage());
+        }
+    }
+    private void handleXoaKhachHang() {
+        KhachHang selected = khachHangTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Chọn khách hàng để xóa!");
+            return;
+        }
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Xác nhận xóa");
+        confirm.setHeaderText(null);
+        confirm.setContentText("Bạn có chắc chắn muốn xóa khách hàng này?");
+        if (confirm.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            try {
+                khachHangDAO.deleteById(selected.getId());
+                setupKhachHangTable();
+                showAlert("Đã xóa khách hàng thành công!");
+            } catch (Exception ex) {
+                showAlert("Lỗi khi xóa khách hàng: " + ex.getMessage());
+            }
         }
     }
     private void showAlert(String message) {

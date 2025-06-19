@@ -22,17 +22,19 @@ public class NhanVienController {
     @FXML private TableColumn<NhanVien, String> colVaiTroNhanVien;
     @FXML private TableColumn<NhanVien, Integer> colNamSinhNhanVien;
     @FXML private TableColumn<NhanVien, java.util.Date> colNgayVaoLamNhanVien;
-    @FXML private Button btnThemNV;
-    @FXML private Button btnSuaNV;
-    @FXML private Button refreshButtonNV;
+    @FXML private Button btnThem; // was btnThemNV
+    @FXML private Button btnSua; // was btnSuaNV
+    @FXML private Button btnXoa;
+    @FXML private Button refreshButtonNhanVien; // was refreshButtonNV
 
     private final NhanVienDAO nhanVienDAO = new NhanVienDAO();
 
     @FXML
     private void initialize() {
-        btnThemNV.setOnAction(e -> handleThemNhanVien());
-        btnSuaNV.setOnAction(e -> handleSuaNhanVien());
-        refreshButtonNV.setOnAction(e -> setupNhanVienTable());
+        if (btnThem != null) btnThem.setOnAction(e -> handleThemNhanVien());
+        if (btnSua != null) btnSua.setOnAction(e -> handleSuaNhanVien());
+        if (btnXoa != null) btnXoa.setOnAction(e -> handleXoaNhanVien());
+        if (refreshButtonNhanVien != null) refreshButtonNhanVien.setOnAction(e -> setupNhanVienTable());
         setupNhanVienTable();
     }
 
@@ -54,23 +56,27 @@ public class NhanVienController {
             TextField namSinhField = (TextField) root.lookup("#namSinhField");
             DatePicker ngayVaoLamPicker = (DatePicker) root.lookup("#ngayVaoLamPicker");
             btnThem.setOnAction(e -> {
-                NhanVien nv = new NhanVien(
-                    idField.getText(),
-                    hoTenField.getText(),
-                    sdtField.getText(),
-                    gioiTinhCombo.getValue() == null ? "" : gioiTinhCombo.getValue().toString(),
-                    vaiTroField.getText(),
-                    Integer.parseInt(namSinhField.getText()),
-                    java.sql.Date.valueOf(ngayVaoLamPicker.getValue())
-                );
-                nhanVienDAO.create(nv);
-                setupNhanVienTable();
-                stage.close();
+                try {
+                    NhanVien nv = new NhanVien(
+                        idField.getText(),
+                        hoTenField.getText(),
+                        sdtField.getText(),
+                        gioiTinhCombo.getValue() == null ? "" : gioiTinhCombo.getValue().toString(),
+                        vaiTroField.getText(),
+                        Integer.parseInt(namSinhField.getText()),
+                        java.sql.Date.valueOf(ngayVaoLamPicker.getValue())
+                    );
+                    nhanVienDAO.create(nv);
+                    setupNhanVienTable();
+                    stage.close();
+                } catch (Exception ex) {
+                    showAlert("Lỗi khi thêm nhân viên: " + ex.getMessage());
+                }
             });
             btnHuy.setOnAction(e -> stage.close());
             stage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Lỗi khi mở cửa sổ thêm nhân viên: " + e.getMessage());
         }
     }
     private void handleSuaNhanVien() {
@@ -101,23 +107,47 @@ public class NhanVienController {
             namSinhField.setText(String.valueOf(selected.getNamSinh()));
             ngayVaoLamPicker.setValue(new java.sql.Date(selected.getNgayVaoLam().getTime()).toLocalDate());
             btnCapNhat.setOnAction(e -> {
-                NhanVien nv = new NhanVien(
-                    idField.getText(),
-                    hoTenField.getText(),
-                    sdtField.getText(),
-                    gioiTinhCombo.getValue() == null ? "" : gioiTinhCombo.getValue().toString(),
-                    vaiTroField.getText(),
-                    Integer.parseInt(namSinhField.getText()),
-                    java.sql.Date.valueOf(ngayVaoLamPicker.getValue())
-                );
-                nhanVienDAO.update(nv);
-                setupNhanVienTable();
-                stage.close();
+                try {
+                    NhanVien nv = new NhanVien(
+                        idField.getText(),
+                        hoTenField.getText(),
+                        sdtField.getText(),
+                        gioiTinhCombo.getValue() == null ? "" : gioiTinhCombo.getValue().toString(),
+                        vaiTroField.getText(),
+                        Integer.parseInt(namSinhField.getText()),
+                        java.sql.Date.valueOf(ngayVaoLamPicker.getValue())
+                    );
+                    nhanVienDAO.update(nv);
+                    setupNhanVienTable();
+                    stage.close();
+                } catch (Exception ex) {
+                    showAlert("Lỗi khi cập nhật nhân viên: " + ex.getMessage());
+                }
             });
             btnHuy.setOnAction(e -> stage.close());
             stage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Lỗi khi mở cửa sổ cập nhật nhân viên: " + e.getMessage());
+        }
+    }
+    private void handleXoaNhanVien() {
+        NhanVien selected = nhanVienTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Chọn nhân viên để xóa!");
+            return;
+        }
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Xác nhận xóa");
+        confirm.setHeaderText(null);
+        confirm.setContentText("Bạn có chắc chắn muốn xóa nhân viên này?");
+        if (confirm.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            try {
+                nhanVienDAO.deleteById(selected.getIdnv());
+                setupNhanVienTable();
+                showAlert("Đã xóa nhân viên thành công!");
+            } catch (Exception ex) {
+                showAlert("Lỗi khi xóa nhân viên: " + ex.getMessage());
+            }
         }
     }
     private void showAlert(String message) {

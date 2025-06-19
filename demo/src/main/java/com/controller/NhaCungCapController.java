@@ -22,6 +22,7 @@ public class NhaCungCapController {
     @FXML private Button btnThemNhaCungCap;
     @FXML private Button btnSuaNhaCungCap;
     @FXML private Button refreshButtonNhaCungCap;
+    @FXML private Button btnXoaNhaCungCap;
 
     private final NhaCungCapDAO nhaCungCapDAO = new NhaCungCapDAO();
 
@@ -29,6 +30,7 @@ public class NhaCungCapController {
     private void initialize() {
         btnThemNhaCungCap.setOnAction(e -> handleThemNhaCungCap());
         btnSuaNhaCungCap.setOnAction(e -> handleSuaNhaCungCap());
+        if (btnXoaNhaCungCap != null) btnXoaNhaCungCap.setOnAction(e -> handleXoaNhaCungCap());
         refreshButtonNhaCungCap.setOnAction(e -> setupNhaCungCapTable());
         setupNhaCungCapTable();
     }
@@ -48,20 +50,24 @@ public class NhaCungCapController {
             TextField sdtField = (TextField) root.lookup("#sdtField");
             TextField diaChiField = (TextField) root.lookup("#diaChiField");
             btnThem.setOnAction(e -> {
-                NhaCungCap ncc = new NhaCungCap(
-                    idField.getText(),
-                    tenField.getText(),
-                    sdtField.getText(),
-                    diaChiField.getText()
-                );
-                nhaCungCapDAO.create(ncc);
-                setupNhaCungCapTable();
-                stage.close();
+                try {
+                    NhaCungCap ncc = new NhaCungCap(
+                        idField.getText(),
+                        tenField.getText(),
+                        sdtField.getText(),
+                        diaChiField.getText()
+                    );
+                    nhaCungCapDAO.create(ncc);
+                    setupNhaCungCapTable();
+                    stage.close();
+                } catch (Exception ex) {
+                    showAlert("Lỗi khi thêm nhà cung cấp: " + ex.getMessage());
+                }
             });
             btnHuy.setOnAction(e -> stage.close());
             stage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Lỗi khi mở cửa sổ thêm nhà cung cấp: " + e.getMessage());
         }
     }
     private void handleSuaNhaCungCap() {
@@ -86,20 +92,44 @@ public class NhaCungCapController {
             sdtField.setText(selected.getSdt());
             diaChiField.setText(selected.getDiaChi());
             btnCapNhat.setOnAction(e -> {
-                NhaCungCap ncc = new NhaCungCap(
-                    idField.getText(),
-                    tenField.getText(),
-                    sdtField.getText(),
-                    diaChiField.getText()
-                );
-                nhaCungCapDAO.update(ncc);
-                setupNhaCungCapTable();
-                stage.close();
+                try {
+                    NhaCungCap ncc = new NhaCungCap(
+                        idField.getText(),
+                        tenField.getText(),
+                        sdtField.getText(),
+                        diaChiField.getText()
+                    );
+                    nhaCungCapDAO.update(ncc);
+                    setupNhaCungCapTable();
+                    stage.close();
+                } catch (Exception ex) {
+                    showAlert("Lỗi khi cập nhật nhà cung cấp: " + ex.getMessage());
+                }
             });
             btnHuy.setOnAction(e -> stage.close());
             stage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Lỗi khi mở cửa sổ cập nhật nhà cung cấp: " + e.getMessage());
+        }
+    }
+    private void handleXoaNhaCungCap() {
+        NhaCungCap selected = nhaCungCapTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Chọn nhà cung cấp để xóa!");
+            return;
+        }
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Xác nhận xóa");
+        confirm.setHeaderText(null);
+        confirm.setContentText("Bạn có chắc chắn muốn xóa nhà cung cấp này?");
+        if (confirm.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            try {
+                nhaCungCapDAO.deleteById(selected.getIdncc());
+                setupNhaCungCapTable();
+                showAlert("Đã xóa nhà cung cấp thành công!");
+            } catch (Exception ex) {
+                showAlert("Lỗi khi xóa nhà cung cấp: " + ex.getMessage());
+            }
         }
     }
     private void showAlert(String message) {

@@ -24,6 +24,7 @@ public class ThuocController {
     @FXML private TableColumn<Thuoc, Double> colDonGia;
     @FXML private Button btnThemThuoc;
     @FXML private Button btnSuaThuoc;
+    @FXML private Button btnXoaThuoc;
     @FXML private Button refreshButtonThuoc;
 
     private final ThuocDAO thuocDAO = new ThuocDAO();
@@ -32,6 +33,7 @@ public class ThuocController {
     private void initialize() {
         btnThemThuoc.setOnAction(e -> handleThemThuoc());
         btnSuaThuoc.setOnAction(e -> handleSuaThuoc());
+        if (btnXoaThuoc != null) btnXoaThuoc.setOnAction(e -> handleXoaThuoc());
         refreshButtonThuoc.setOnAction(e -> setupThuocTable());
         setupThuocTable();
     }
@@ -56,25 +58,29 @@ public class ThuocController {
             TextField giaBanField = (TextField) root.lookup("#giaBanField");
             TextField soLuongTonField = (TextField) root.lookup("#soLuongTonField");
             btnThem.setOnAction(e -> {
-                Thuoc thuoc = new Thuoc(
-                    idField.getText(),
-                    tenField.getText(),
-                    thanhPhanField.getText(),
-                    donViTinhField.getText(),
-                    danhMucField.getText(),
-                    xuatXuField.getText(),
-                    Double.parseDouble(giaNhapField.getText()),
-                    Double.parseDouble(giaBanField.getText()),
-                    Integer.parseInt(soLuongTonField.getText())
-                );
-                thuocDAO.create(thuoc);
-                setupThuocTable();
-                stage.close();
+                try {
+                    Thuoc thuoc = new Thuoc(
+                        idField.getText(),
+                        tenField.getText(),
+                        thanhPhanField.getText(),
+                        donViTinhField.getText(),
+                        danhMucField.getText(),
+                        xuatXuField.getText(),
+                        Double.parseDouble(giaNhapField.getText()),
+                        Double.parseDouble(giaBanField.getText()),
+                        Integer.parseInt(soLuongTonField.getText())
+                    );
+                    thuocDAO.create(thuoc);
+                    setupThuocTable();
+                    stage.close();
+                } catch (Exception ex) {
+                    showAlert("Lỗi khi thêm thuốc: " + ex.getMessage());
+                }
             });
             btnHuy.setOnAction(e -> stage.close());
             stage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Lỗi khi mở cửa sổ thêm thuốc: " + e.getMessage());
         }
     }
     private void handleSuaThuoc() {
@@ -109,25 +115,49 @@ public class ThuocController {
             giaBanField.setText(String.valueOf(selected.getGiaBan()));
             soLuongTonField.setText(String.valueOf(selected.getSoLuongTon()));
             btnCapNhat.setOnAction(e -> {
-                Thuoc thuoc = new Thuoc(
-                    idField.getText(),
-                    tenField.getText(),
-                    thanhPhanField.getText(),
-                    donViTinhField.getText(),
-                    danhMucField.getText(),
-                    xuatXuField.getText(),
-                    Double.parseDouble(giaNhapField.getText()),
-                    Double.parseDouble(giaBanField.getText()),
-                    Integer.parseInt(soLuongTonField.getText())
-                );
-                thuocDAO.update(thuoc);
-                setupThuocTable();
-                stage.close();
+                try {
+                    Thuoc thuoc = new Thuoc(
+                        idField.getText(),
+                        tenField.getText(),
+                        thanhPhanField.getText(),
+                        donViTinhField.getText(),
+                        danhMucField.getText(),
+                        xuatXuField.getText(),
+                        Double.parseDouble(giaNhapField.getText()),
+                        Double.parseDouble(giaBanField.getText()),
+                        Integer.parseInt(soLuongTonField.getText())
+                    );
+                    thuocDAO.update(thuoc);
+                    setupThuocTable();
+                    stage.close();
+                } catch (Exception ex) {
+                    showAlert("Lỗi khi cập nhật thuốc: " + ex.getMessage());
+                }
             });
             btnHuy.setOnAction(e -> stage.close());
             stage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Lỗi khi mở cửa sổ cập nhật thuốc: " + e.getMessage());
+        }
+    }
+    private void handleXoaThuoc() {
+        Thuoc selected = thuocTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Chọn thuốc để xóa!");
+            return;
+        }
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Xác nhận xóa");
+        confirm.setHeaderText(null);
+        confirm.setContentText("Bạn có chắc chắn muốn xóa thuốc này?");
+        if (confirm.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            try {
+                thuocDAO.deleteById(selected.getIdThuoc());
+                setupThuocTable();
+                showAlert("Đã xóa thuốc thành công!");
+            } catch (Exception ex) {
+                showAlert("Lỗi khi xóa thuốc: " + ex.getMessage());
+            }
         }
     }
     private void showAlert(String message) {

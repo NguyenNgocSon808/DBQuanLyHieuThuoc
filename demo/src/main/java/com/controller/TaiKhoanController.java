@@ -22,6 +22,7 @@ public class TaiKhoanController {
     @FXML private TableColumn<TaiKhoan, String> colVaiTroTK;
     @FXML private Button btnThem;
     @FXML private Button btnSua;
+    @FXML private Button btnXoa;
     @FXML private Button refreshButton;
 
     private final TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
@@ -30,6 +31,7 @@ public class TaiKhoanController {
     private void initialize() {
         btnThem.setOnAction(e -> handleThemTaiKhoan());
         btnSua.setOnAction(e -> handleSuaTaiKhoan());
+        if (btnXoa != null) btnXoa.setOnAction(e -> handleXoaTaiKhoan());
         refreshButton.setOnAction(e -> setupTaiKhoanTable());
         setupTaiKhoanTable();
     }
@@ -50,21 +52,25 @@ public class TaiKhoanController {
             TextField idNhanVienField = (TextField) root.lookup("#idNhanVienField");
             TextField vaiTroField = (TextField) root.lookup("#vaiTroField");
             btnThem.setOnAction(e -> {
-                TaiKhoan tk = new TaiKhoan(
-                    idField.getText(),
-                    usernameField.getText(),
-                    passwordField.getText(),
-                    idNhanVienField.getText(),
-                    vaiTroField.getText()
-                );
-                taiKhoanDAO.create(tk);
-                setupTaiKhoanTable();
-                stage.close();
+                try {
+                    TaiKhoan tk = new TaiKhoan(
+                        idField.getText(),
+                        usernameField.getText(),
+                        passwordField.getText(),
+                        idNhanVienField.getText(),
+                        vaiTroField.getText()
+                    );
+                    taiKhoanDAO.create(tk);
+                    setupTaiKhoanTable();
+                    stage.close();
+                } catch (Exception ex) {
+                    showAlert("Lỗi khi thêm tài khoản: " + ex.getMessage());
+                }
             });
             btnHuy.setOnAction(e -> stage.close());
             stage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Lỗi khi mở cửa sổ thêm tài khoản: " + e.getMessage());
         }
     }
     private void handleSuaTaiKhoan() {
@@ -91,21 +97,45 @@ public class TaiKhoanController {
             idNhanVienField.setText(selected.getIdnv());
             vaiTroField.setText(selected.getVaiTro());
             btnCapNhat.setOnAction(e -> {
-                TaiKhoan tk = new TaiKhoan(
-                    idField.getText(),
-                    usernameField.getText(),
-                    passwordField.getText(),
-                    idNhanVienField.getText(),
-                    vaiTroField.getText()
-                );
-                taiKhoanDAO.update(tk);
-                setupTaiKhoanTable();
-                stage.close();
+                try {
+                    TaiKhoan tk = new TaiKhoan(
+                        idField.getText(),
+                        usernameField.getText(),
+                        passwordField.getText(),
+                        idNhanVienField.getText(),
+                        vaiTroField.getText()
+                    );
+                    taiKhoanDAO.update(tk);
+                    setupTaiKhoanTable();
+                    stage.close();
+                } catch (Exception ex) {
+                    showAlert("Lỗi khi cập nhật tài khoản: " + ex.getMessage());
+                }
             });
             btnHuy.setOnAction(e -> stage.close());
             stage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert("Lỗi khi mở cửa sổ cập nhật tài khoản: " + e.getMessage());
+        }
+    }
+    private void handleXoaTaiKhoan() {
+        TaiKhoan selected = taiKhoanTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Chọn tài khoản để xóa!");
+            return;
+        }
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Xác nhận xóa");
+        confirm.setHeaderText(null);
+        confirm.setContentText("Bạn có chắc chắn muốn xóa tài khoản này?");
+        if (confirm.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            try {
+                taiKhoanDAO.deleteById(selected.getIdtk());
+                setupTaiKhoanTable();
+                showAlert("Đã xóa tài khoản thành công!");
+            } catch (Exception ex) {
+                showAlert("Lỗi khi xóa tài khoản: " + ex.getMessage());
+            }
         }
     }
     private void showAlert(String message) {
