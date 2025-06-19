@@ -15,12 +15,12 @@
 
 <!-- Table Panel -->
 
-<VBox spacing="10" style="-fx-padding: 20 20 10 0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox spacing="10" style="-fx-padding: 20 20 10 0; -fx-background-color: #cfedef;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.HomePageController">
       <children>
            <HBox alignment="CENTER_LEFT" spacing="24" style="-fx-padding: 10 0 10 0;">
                <children>
                    <VBox alignment="CENTER" spacing="4">
-                       <Button fx:id="btnThem" prefHeight="48" prefWidth="48" style="-fx-background-color: #00e676; -fx-background-radius: 50%; -fx-padding: 0;">
+                       <Button fx:id="btnThemThuoc" prefHeight="48" prefWidth="48" style="-fx-background-color: #00e676; -fx-background-radius: 50%; -fx-padding: 0;">
                            <graphic>
                                <ImageView fitHeight="50.0" fitWidth="50.0">
                            <image>
@@ -32,7 +32,7 @@
                        <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="THÊM" />
                    </VBox>
                    <VBox alignment="CENTER" spacing="4">
-                       <Button fx:id="btnSua" prefHeight="48" prefWidth="48" style="-fx-background-color: #ffd600; -fx-background-radius: 50%; -fx-padding: 0;">
+                       <Button fx:id="btnSuaThuoc" prefHeight="48" prefWidth="48" style="-fx-background-color: #ffd600; -fx-background-radius: 50%; -fx-padding: 0;">
                            <graphic>
                                <ImageView fitHeight="50.0" fitWidth="50.0">
                            <image>
@@ -44,7 +44,7 @@
                        <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="SỬA" />
                    </VBox>
                    <VBox alignment="CENTER" spacing="4">
-                       <Button fx:id="btnXoa" prefHeight="48" prefWidth="48" style="-fx-background-color: #ff5252; -fx-background-radius: 50%; -fx-padding: 0;">
+                       <Button fx:id="btnXoaThuoc" prefHeight="48" prefWidth="48" style="-fx-background-color: #ff5252; -fx-background-radius: 50%; -fx-padding: 0;">
                            <graphic>
                                <ImageView fitHeight="50.0" fitWidth="50.0">
                            <image>
@@ -56,7 +56,7 @@
                        <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="XÓA" />
                    </VBox>
                    <VBox alignment="CENTER" spacing="4">
-                       <Button fx:id="btnInfo" prefHeight="48" prefWidth="48" style="-fx-background-color: #2979ff; -fx-background-radius: 50%; -fx-padding: 0;">
+                       <Button fx:id="btnInfoThuoc" prefHeight="48" prefWidth="48" style="-fx-background-color: #2979ff; -fx-background-radius: 50%; -fx-padding: 0;">
                            <graphic>
                                <ImageView fitHeight="50.0" fitWidth="50.0">
                            <image>
@@ -67,34 +67,11 @@
                        </Button>
                        <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="INFO" />
                    </VBox>
-                   <VBox alignment="CENTER" spacing="4">
-                       <Button fx:id="btnImport" prefHeight="48" prefWidth="48" style="-fx-background-color: #43a047; -fx-background-radius: 50%; -fx-padding: 0;">
-                           <graphic>
-                               <ImageView fitHeight="50.0" fitWidth="50.0">
-                           <image>
-                           <Image url="@assets/import.png" />
-                           </image>
-                     </ImageView>
-                           </graphic>
-                       </Button>
-                       <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="IMPORT" />
-                   </VBox>
-                   <VBox alignment="CENTER" spacing="4">
-                       <Button fx:id="btnExport" prefHeight="48" prefWidth="48" style="-fx-background-color: #ffd600; -fx-background-radius: 50%; -fx-padding: 0;">
-                           <graphic>
-                               <ImageView fitHeight="50.0" fitWidth="50.0">
-                           <image>
-                           <Image url="@assets/export.png" />
-                           </image>
-                     </ImageView>
-                           </graphic>
-                       </Button>
-                       <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="EXPORT" />
-                   </VBox>
+                   <VBox alignment="CENTER" spacing="4" />
             <Region prefHeight="0.0" prefWidth="200.0" />
-                   <ComboBox fx:id="filterVaiTro" prefWidth="100" promptText="Tất cả" />
-                   <TextField fx:id="searchField" prefWidth="220" promptText="Tìm kiếm..." />
-                   <Button fx:id="refreshButton" style="-fx-background-color: #fff;">
+                   <ComboBox fx:id="filterVaiTroThuoc" prefWidth="100" promptText="Tất cả" />
+                   <TextField fx:id="searchFieldThuoc" prefWidth="220" promptText="Tìm kiếm..." />
+                   <Button fx:id="refreshButtonThuoc" style="-fx-background-color: #fff;">
                        <graphic>
                            <ImageView fitHeight="24" fitWidth="24">
                        <image>
@@ -112,7 +89,7 @@
       <HBox prefHeight="765" prefWidth="1145" style="-fx-background-color: #f8fafd;">
          <children>
               <!-- Filter Panel -->
-              <VBox maxWidth="300" minWidth="150.0" prefHeight="766.0" prefWidth="150.0" spacing="16" style="-fx-padding: 20 10 10 20; -fx-background-color: #f8fafd;">
+              <VBox maxWidth="300" minWidth="150.0" prefHeight="766.0" prefWidth="150.0" spacing="16" style="-fx-padding: 20 10 10 20; -fx-background-color: #cfedef;">
                   <children>
                       <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Danh mục thuốc" />
                       <ComboBox fx:id="danhMucCombo" promptText="Tất cả" />

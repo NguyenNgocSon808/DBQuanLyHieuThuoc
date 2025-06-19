@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="765" prefWidth="1145" style="-fx-background-color: #cfedef;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="765" prefWidth="1145" style="-fx-background-color: #cfedef;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.HomePageController">
     <children>
         <HBox alignment="CENTER_LEFT" spacing="24" style="-fx-padding: 10 0 10 0;">
             <children>
@@ -60,32 +60,10 @@
                     </Button>
                     <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="INFO" />
                 </VBox>
-                <VBox alignment="CENTER" spacing="4">
-                    <Button fx:id="btnImport" prefHeight="48" prefWidth="48" style="-fx-background-color: #43a047; -fx-background-radius: 50%; -fx-padding: 0;">
-                        <graphic>
-                            <ImageView fitHeight="50.0" fitWidth="50.0">
-                        <image>
-                           <Image url="@assets/import.png" />
-                        </image></ImageView>
-                        </graphic>
-                    </Button>
-                    <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="IMPORT" />
-                </VBox>
-                <VBox alignment="CENTER" spacing="4">
-                    <Button fx:id="btnExport" prefHeight="48" prefWidth="48" style="-fx-background-color: #ffd600; -fx-background-radius: 50%; -fx-padding: 0;">
-                        <graphic>
-                            <ImageView fitHeight="50.0" fitWidth="50.0">
-                        <image>
-                           <Image url="@assets/export.png" />
-                        </image></ImageView>
-                        </graphic>
-                    </Button>
-                    <Label style="-fx-font-size: 12px; -fx-text-fill: #222; -fx-font-weight: bold;" text="EXPORT" />
-                </VBox>
-                <Region prefWidth="40" />
-                <ComboBox fx:id="filterCombo" prefWidth="100" promptText="Tất cả" />
-                <TextField fx:id="searchField" prefWidth="220" promptText="Tìm kiếm..." />
-                <Button fx:id="refreshButton" style="-fx-background-color: #fff;">
+                <Region prefHeight="72.0" prefWidth="236.0" />
+                <ComboBox fx:id="filterComboNhanVien" prefWidth="100" promptText="Tất cả" />
+                <TextField fx:id="searchFieldNhanVien" prefWidth="220" promptText="Tìm kiếm..." />
+                <Button fx:id="refreshButtonNhanVien" style="-fx-background-color: #fff;">
                     <graphic>
                         <ImageView fitHeight="24" fitWidth="24">
                      <image>

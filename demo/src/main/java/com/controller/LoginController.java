@@ -1,6 +1,8 @@
 package com.controller;
 
-import javafx.fxml.FXML;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.stage.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -23,6 +25,11 @@ public class LoginController {
         loginButton.setOnAction(e -> handleLogin());
     }
 
+    @FXML
+    private void loginButtonPressed() {
+        handleLogin();
+    }
+
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -35,7 +42,18 @@ public class LoginController {
         }
         if (authenticated) {
             showAlert(Alert.AlertType.INFORMATION, "Đăng nhập thành công!");
-            // TODO: Chuyển sang giao diện chính
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/home-page.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Trang chủ");
+                stage.setScene(new Scene(root));
+                stage.show();
+                // Close login window
+                loginButton.getScene().getWindow().hide();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             showAlert(Alert.AlertType.ERROR, "Sai tài khoản hoặc mật khẩu!");
         }
