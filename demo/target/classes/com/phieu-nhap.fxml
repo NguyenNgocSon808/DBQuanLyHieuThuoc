@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="700" prefWidth="900" style="-fx-background-color: #cfedef;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="700" prefWidth="900" style="-fx-background-color: #cfedef;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.PhieuNhapController">
     <children>
         <!-- Header -->
         <Label maxWidth="Infinity" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: #009999; -fx-text-fill: white; -fx-padding: 12 0 12 0; -fx-alignment: CENTER;" text="CHI TIẾT PHIẾU NHẬP" />

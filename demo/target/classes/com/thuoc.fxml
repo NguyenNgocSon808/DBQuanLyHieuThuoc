@@ -15,7 +15,7 @@
 
 <!-- Table Panel -->
 
-<VBox spacing="10" style="-fx-padding: 20 20 10 0; -fx-background-color: #cfedef;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.HomePageController">
+<VBox spacing="10" style="-fx-padding: 20 20 10 0; -fx-background-color: #cfedef;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.ThuocController">
       <children>
            <HBox alignment="CENTER_LEFT" spacing="24" style="-fx-padding: 10 0 10 0;">
                <children>

@@ -6,12 +6,14 @@
         <Label text="THÊM NHÀ CUNG CẤP" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #009999; -fx-text-fill: white; -fx-padding: 12 0 12 0; -fx-alignment: CENTER;" maxWidth="Infinity" />
         <GridPane hgap="16" vgap="18" style="-fx-padding: 24 32 24 32;">
             <children>
-                <Label text="Tên nhà cung cấp" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                <TextField fx:id="tenNhaCungCapField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-                <Label text="Số điện thoại" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-                <TextField fx:id="soDienThoaiField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
-                <Label text="Địa chỉ" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                <TextField fx:id="diaChiField" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                <Label text="Mã nhà cung cấp" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <TextField fx:id="idNhaCungCapField" promptText="Mã nhà cung cấp" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                <Label text="Tên nhà cung cấp" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <TextField fx:id="tenNhaCungCapField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                <Label text="Số điện thoại" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <TextField fx:id="sdtField" promptText="Số điện thoại" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                <Label text="Địa chỉ" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <TextField fx:id="diaChiField" promptText="Địa chỉ" GridPane.rowIndex="3" GridPane.columnIndex="1" />
             </children>
         </GridPane>
         <HBox alignment="CENTER" spacing="16" style="-fx-padding: 0 0 24 0;">
