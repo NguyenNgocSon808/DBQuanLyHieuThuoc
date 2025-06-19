@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:controller="com.controller.HoaDonController" hgap="10" maxHeight="-Infinity" maxWidth="1455.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765" prefWidth="1145" style="-fx-background-color: #cfedef;" vgap="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane hgap="10" maxHeight="-Infinity" maxWidth="1455.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765" prefWidth="1145" style="-fx-background-color: #cfedef;" vgap="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.HoaDonController">
     <columnConstraints>
         <ColumnConstraints percentWidth="55.0" />
         <ColumnConstraints percentWidth="45.0" />
@@ -96,10 +96,10 @@
                   <Label prefHeight="38.0" prefWidth="491.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #00bfae; -fx-text-fill: white; -fx-padding: 6 0 6 0; -fx-alignment: CENTER;" text="Giỏ hàng" />
                   <TableView fx:id="cartTable" prefHeight="336.0" prefWidth="498.0">
                       <columns>
-                          <TableColumn prefWidth="55.9999965429306" text="STT" />
-                          <TableColumn prefWidth="200.8000030517578" text="Tên thuốc" />
-                          <TableColumn prefWidth="97.5999755859375" text="Số lượng" />
-                          <TableColumn prefWidth="134.39993896484373" text="Đơn giá" />
+                          <TableColumn fx:id="colSttCart" prefWidth="55.9999965429306" text="STT" />
+                          <TableColumn fx:id="colTenThuocCart" prefWidth="200.8000030517578" text="Tên thuốc" />
+                          <TableColumn fx:id="colSoLuongCart" prefWidth="97.5999755859375" text="Số lượng" />
+                          <TableColumn fx:id="colDonGiaCart" prefWidth="134.39993896484373" text="Đơn giá" />
                       </columns>
                   </TableView>
                   <Button fx:id="removeCartItemButton" alignment="CENTER_RIGHT" maxWidth="40" minWidth="40" style="-fx-background-color: #ff5252; -fx-background-radius: 5;">

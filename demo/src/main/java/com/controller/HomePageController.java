@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.model.entities.TaiKhoan;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,6 +22,16 @@ public class HomePageController {
     @FXML private Button btnTaiKhoan;
     @FXML private Button btnDangXuat;
 
+    private static TaiKhoan currentUser;
+
+    public static void setCurrentUser(TaiKhoan user) {
+        currentUser = user;
+    }
+
+    public static TaiKhoan getCurrentUser() {
+        return currentUser;
+    }
+
     @FXML
     private void initialize() {
         if (btnHoaDon != null) btnHoaDon.setOnAction(e -> handleHoaDonAction());
@@ -31,6 +42,38 @@ public class HomePageController {
         if (btnNhanVien != null) btnNhanVien.setOnAction(e -> handleNhanVienAction());
         if (btnTaiKhoan != null) btnTaiKhoan.setOnAction(e -> handleTaiKhoanAction());
         if (btnDangXuat != null) btnDangXuat.setOnAction(e -> handleDangXuatAction());
+        applyRolePermissions();
+    }
+
+    private void showPermissionError() {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+        alert.setTitle("Lỗi phân quyền");
+        alert.setHeaderText(null);
+        alert.setContentText("Bạn không có quyền truy cập chức năng này!");
+        alert.showAndWait();
+    }
+
+    private void applyRolePermissions() {
+        if (currentUser == null) {
+            showPermissionError();
+            return;
+        }
+        String role = currentUser.getVaiTro();
+        if (role.equalsIgnoreCase("Admin")) {
+            // Admin: full access, do nothing
+        } else if (role.equalsIgnoreCase("Quản lý")) {
+            // Quản lý: chỉ xem phiếu nhập, nhân viên
+            if (btnHoaDon != null) btnHoaDon.setOnAction(e -> showPermissionError());
+            if (btnKhachHang != null) btnKhachHang.setOnAction(e -> showPermissionError());
+            if (btnThuoc != null) btnThuoc.setOnAction(e -> showPermissionError());
+            if (btnNhaCungCap != null) btnNhaCungCap.setOnAction(e -> showPermissionError());
+            if (btnTaiKhoan != null) btnTaiKhoan.setOnAction(e -> showPermissionError());
+        } else if (role.equalsIgnoreCase("Nhân viên")) {
+            // Nhân viên: thao tác dữ liệu trừ tài khoản, phiếu nhập, nhân viên
+            if (btnTaiKhoan != null) btnTaiKhoan.setOnAction(e -> showPermissionError());
+            if (btnPhieuNhap != null) btnPhieuNhap.setOnAction(e -> showPermissionError());
+            if (btnNhanVien != null) btnNhanVien.setOnAction(e -> showPermissionError());
+        }
     }
 
     @FXML
